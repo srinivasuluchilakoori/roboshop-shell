@@ -6,7 +6,6 @@ R="\e[31m"
 G="\e[32m"
 Y="\e[33m"
 N="\e[0m"
-MONGODB_HOST=mongodb.sreenu.online
 
 TIMESTAMP=$(date +%F---%H-%M-%S)
 LOGFILE="/tmp/$0-$TIMESTAMP.log"
@@ -92,6 +91,6 @@ dnf install mongodb-org-shell -y &>> $LOGFILE
 
 VALIDATE $? "installing mongodb client"
 
-mongo --host $MONGODB_HOST </app/schema/catalogue.js &>> $LOGFILE
+mongo --host mongodb.sreenu.online </app/schema/catalogue.js &>> $LOGFILE
 
 VALIDATE $? "loading catalogue data into Mongodb"
