@@ -55,35 +55,35 @@ mkdir -p /app &>> $LOGFILE
 
 VALIDATE $? "creating app directory"
 
-curl -o /tmp/catalogue.zip https://roboshop-builds.s3.amazonaws.com/catalogue.zip &>> $LOGFILE
+curl -o /tmp/user.zip https://roboshop-builds.s3.amazonaws.com/user.zip &>> $LOGFILE
 
-VALIDATE $? "downloading catalogue application zip file"
+VALIDATE $? "downloading user application zip file"
 
 cd /app 
 
-unzip -o /tmp/catalogue.zip &>> $LOGFILE
+unzip -o /tmp/user.zip &>> $LOGFILE
 
-VALIDATE $? "unzipping the catalogue file"
+VALIDATE $? "unzipping the user file"
 
 npm install  &>> $LOGFILE
 
 VALIDATE $? "installing dependencies"
 
-cp /home/centos/roboshop-shell/catalogue.service /etc/systemd/system/catalogue.service &>> $LOGFILE
+cp /home/centos/roboshop-shell/user.service /etc/systemd/system/user.service
 
-VALIDATE $? "copying catalogue service file"
+VALIDATE $? "copying user service file"
 
 systemctl daemon-reload &>> $LOGFILE
 
-VALIDATE $? "catalogue daemon reload"
+VALIDATE $? "user daemon reload"
 
-systemctl enable catalogue &>> $LOGFILE
+systemctl enable user &>> $LOGFILE
 
-VALIDATE $? "enabling catalogue"
+VALIDATE $? "enabling user"
 
-systemctl start catalogue &>> $LOGFILE
+systemctl start user &>> $LOGFILE
 
-VALIDATE $? "starting catalogue"
+VALIDATE $? "starting user"
 
 cp /home/centos/roboshop-shell/mongo.repo /etc/yum.repos.d/mongo.repo
 
@@ -93,6 +93,6 @@ dnf install mongodb-org-shell -y &>> $LOGFILE
 
 VALIDATE $? "installing mongodb client"
 
-mongo --host mongo.sreenu.online </app/schema/catalogue.js &>> $LOGFILE
+mongo --host mongo.sreenu.online </app/schema/user.js &>> $LOGFILE
 
-VALIDATE $? "loading catalogue data into Mongodb"
+VALIDATE $? "loading user data into Mongodb"
