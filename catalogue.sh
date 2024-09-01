@@ -91,6 +91,6 @@ dnf install mongodb-org-shell -y &>> $LOGFILE
 
 VALIDATE $? "installing mongodb client"
 
-mongo --host mongodb.sreenu.online </app/schema/catalogue.js
+mongo --host mongodb.sreenu.online </app/schema/catalogue.js &>> $LOGFILE
 
 VALIDATE $? "loading catalogue data into Mongodb"
